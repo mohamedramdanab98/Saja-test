@@ -1105,7 +1105,16 @@
             }
 
             .hero-btns {
-                justify-content: center;
+                flex-direction: column !important;
+                align-items: center !important;
+                gap: 12px !important;
+            }
+
+             .hero-btns .btn {
+                width: 100% !important;
+                max-width: 320px !important; /* حجم مثالي ومريح لعرض الجوال */
+                padding: 12px 20px !important; /* تقليص الحواف لمنع التفاف الكلمات */
+                font-size: 14px !important; /* خط أنعم يتناسب مع الشاشات الصغيرة */
             }
 
             .why-shs-grid, .cases-grid, .timeline, .siad-ecosystem-grid {
