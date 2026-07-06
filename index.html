@@ -228,17 +228,6 @@
             transition: var(--transition);
         }
 
-        /* حركة همبرجر تفاعلية وممتازة تتحول لعلامة X عند الفتح */
-        .menu-toggle.active span:nth-child(1) {
-            transform: rotate(-45deg) translate(-5px, 6px);
-        }
-        .menu-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
-        .menu-toggle.active span:nth-child(3) {
-            transform: rotate(45deg) translate(-5px, -6px);
-        }
-
         /* تعديل ارتفاع قسم الصدارة لرفع الأرقام الإحصائية للأعلى فوق خط الطي (Hero Section) */
         .hero {
             position: relative;
@@ -592,104 +581,87 @@
             opacity: 0.8;
         }
 
-        /* الركائز الخدمية بتبويب تفاعلي (Interactive Services Tabs) */
-        .pillars-tabs-section {
+
+        /* ======================================================== */
+        /* الهيكل الجديد لقسم الخدمات - كروت النخبة الثلاثية المفتوحة (3-Column Elite Minimalist Cards) */
+        /* ======================================================== */
+        .pillars-cards-section {
             background-color: var(--bg-stone);
         }
 
-        .tabs-container {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        /* تحسين التبويب تفادياً لأي تمدد أو تزاحم بصري */
-        .tab-headers {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 50px;
-            border-bottom: 2px solid rgba(52, 42, 44, 0.08);
-            padding-bottom: 15px;
-            flex-wrap: wrap; /* لمنع تداخل الحقول على الشاشات المتوسطة والجوالات */
-        }
-
-        /* معالجة فلاتر وحدود الأزرار برمجياً لمنع إظهار ستايل المتصفحات الافتراضي القبيح */
-        .tab-btn {
-            background: transparent !important;
-            border: 0 !important; /* تصفير حاد لأي حدود تفرضها المتصفحات */
-            outline: 0 !important;
-            box-shadow: none !important;
-            padding: 15px 30px;
-            font-family: var(--font-family);
-            font-size: 17px;
-            font-weight: 700;
-            color: var(--text-body);
-            cursor: pointer;
-            position: relative;
-            transition: var(--transition);
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-        }
-
-        .tab-btn::after {
-            content: '';
-            position: absolute;
-            bottom: -17px;
-            right: 0;
-            width: 0;
-            height: 3px;
-            background-color: var(--secondary-color);
-            transition: var(--transition);
-        }
-
-        .tab-btn.active {
-            color: var(--secondary-color);
-        }
-
-        .tab-btn.active::after {
-            width: 100%;
-        }
-
-        .tab-content {
-            display: none;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .tab-content.active {
+        .pillars-cards-grid {
             display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
-            gap: 50px;
-            align-items: center;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
         }
 
-        .tab-pane-text h4 {
-            font-size: 24px;
+        .service-elite-card {
+            background-color: var(--bg-white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-subtle);
+            border-top: 5px solid var(--accent-color);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition);
+        }
+
+        .service-elite-card:hover {
+            transform: translateY(-8px);
+            border-top-color: var(--secondary-color);
+            box-shadow: var(--shadow-premium);
+        }
+
+        .service-elite-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .service-elite-card:hover .service-elite-img {
+            transform: scale(1.05);
+        }
+
+        .service-elite-content {
+            padding: 35px 30px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-elite-content h4 {
+            font-size: 21px;
             font-weight: 800;
             color: var(--primary-color);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
-        .tab-pane-text p {
-            font-size: 15.5px;
-            line-height: 1.8;
+        .service-elite-content p {
+            font-size: 14.5px;
+            line-height: 1.7;
+            color: var(--text-body);
             margin-bottom: 25px;
         }
 
-        .tab-features-list {
+        .service-elite-features {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 12px;
+            margin-bottom: 30px;
+            flex-grow: 1; /* يدفع زر اتخاذ الإجراء لأسفل الكارت بالتساوي */
         }
 
-        .tab-features-list li {
+        .service-elite-features li {
             position: relative;
-            padding-right: 25px;
-            font-size: 14.5px;
+            padding-right: 22px;
+            font-size: 14px;
             color: var(--text-body);
+            line-height: 1.6;
         }
 
-        .tab-features-list li::before {
+        .service-elite-features li::before {
             content: "✓";
             position: absolute;
             right: 0;
@@ -697,13 +669,12 @@
             font-weight: bold;
         }
 
-        .tab-pane-visual img {
+        .service-elite-card .btn-contextual {
             width: 100%;
-            height: 300px;
-            object-fit: cover;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-subtle);
+            margin-top: auto;
         }
+        /* ======================================================== */
+
 
         /* الميزة التنافسية (Why SHS?) */
         .why-shs {
@@ -712,7 +683,7 @@
         }
 
         .why-shs .section-header h3 {
-            color: var(--text-dark);
+            color: var(--text-light);
         }
 
         .why-shs-grid {
@@ -826,6 +797,7 @@
             gap: 30px;
         }
 
+        /* كلاس الكرت المطور مع Flex لضمان امتداد وتوازن العناصر لترتيب الأزرار */
         .case-card {
             background: var(--bg-white);
             border-radius: var(--border-radius);
@@ -860,27 +832,26 @@
             transform: translateX(-4px);
         }
 
-        /* هيكلة وتعديل عرض صور الكروت الحقيقية لضمان أعلى جودة وحدة بصرياً */
+        /* تفعيل العرض الكامل للصور الرأسية والأفقية دون أي قص عشوائي (Ultra-Sharp Framed Gallery) */
         .case-img-wrapper {
             width: 100%;
             height: 240px;
             overflow: hidden;
             position: relative;
+            background-color: var(--primary-color); /* إطار إسبريسو غامق فخم لملء الفراغات الهندسية */
         }
 
         .case-img-element {
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            /* معالجة فندق الخيام لعرض كامل الواجهة المعمارية رأسياً دون اقتطاع عشوائي */
-            object-position: center top; 
+            object-fit: contain; /* إظهار كامل تفاصيل ومباني المشروع بنسبة 100% دون أي اقتطاع */
             transition: var(--transition);
-            image-rendering: -webkit-optimize-contrast; /* معالجة وتحسين دقة حواف الصورة */
+            image-rendering: -webkit-optimize-contrast; 
             image-rendering: crisp-edges;
         }
 
         .case-card:hover .case-img-element {
-            transform: scale(1.08); /* زووم هادئ ومريح للعين عند الحوم */
+            transform: scale(1.05); 
         }
 
         .case-badge {
@@ -901,6 +872,7 @@
             flex-grow: 1;
             display: flex;
             flex-direction: column;
+            justify-content: space-between; /* يضمن تباعد المحتوى ليدفع الهيكل لأسفل تلقائياً */
         }
 
         .case-content h4 {
@@ -915,6 +887,9 @@
         .case-details {
             font-size: 14px;
             color: var(--text-body);
+            flex-grow: 1; /* مهم جداً لدفع زر اتخاذ الإجراء للأسفل */
+            display: flex;
+            flex-direction: column;
         }
 
         .case-details p {
@@ -1085,9 +1060,9 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* التجاوب والتحول المتكامل لشاشات الجوال والتطابق التام للواجهات والتبويبات */
+        /* التجاوب والتوافق المتكامل مع الهواتف والجوالات */
         @media (max-width: 991px) {
-            .metrics-grid, .why-shs-grid, .cases-grid, .legacy-grid, .siad-grid, .tab-content.active {
+            .metrics-grid, .why-shs-grid, .cases-grid, .legacy-grid, .siad-grid, .pillars-cards-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
             .timeline {
@@ -1097,7 +1072,7 @@
             .timeline::before {
                 display: none;
             }
-            .legacy-grid, .siad-grid, .tab-content.active {
+            .legacy-grid, .siad-grid, .pillars-cards-grid {
                 grid-template-columns: 1fr;
             }
             .editorial-metrics-wrapper {
@@ -1129,18 +1104,8 @@
                 text-align: center;
             }
 
-            /* تحويل الأزرار للجوال لتأخذ العرض الكامل لزيادة نقر الإبهام لسرعة الاتصال */
-            .btn {
-                width: 100% !important;
-                max-width: 100% !important;
-                padding: 14px 24px;
-                font-size: 14px;
-            }
-
             .hero-btns {
-                flex-direction: column;
-                width: 100%;
-                gap: 12px;
+                justify-content: center;
             }
 
             .why-shs-grid, .cases-grid, .timeline, .siad-ecosystem-grid {
@@ -1156,75 +1121,28 @@
             }
 
             .contact-wrapper {
-                padding: 35px 25px; /* تقليص الحواف للجوال لمنع التداخل والقطع الجانبي */
+                padding: 35px 25px; /* تقليص الهوامش الجانبية للجوال لمنع التداخل والقطع */
             }
 
-            /* معالجة انهيار التبويبات الفنية الخدمية للجوال بشكل رأسي منظم بالكامل */
-            .tab-headers {
-                flex-direction: column;
-                align-items: stretch;
-                gap: 8px;
-                border-bottom: none;
-                padding-bottom: 0;
-            }
-
-            .tab-btn {
-                width: 100% !important;
-                padding: 12px 15px;
-                background-color: var(--bg-stone) !important;
-                border-radius: var(--border-radius) !important;
-                border: 1px solid rgba(52, 42, 44, 0.08) !important;
-                font-size: 15px;
-            }
-
-            .tab-btn::after {
-                display: none; /* إخفاء الخط السفلي للجوال واستبداله بباك جراوند تفاعلية */
-            }
-
-            .tab-btn.active {
-                background-color: var(--primary-color) !important;
-                color: var(--text-light) !important;
-                border-color: var(--primary-color) !important;
-            }
-
-            .tab-content.active {
-                grid-template-columns: 1fr;
-                gap: 30px;
-                margin-top: 30px;
-            }
-
-            .tab-pane-visual img {
-                height: 220px;
-            }
-            
             .menu-toggle {
                 display: flex;
             }
 
             .nav-menu {
                 position: fixed;
-                top: 0;
+                top: -100%;
                 left: 0;
                 width: 100%;
-                height: auto;
-                max-height: 100vh;
                 background-color: var(--primary-color);
                 flex-direction: column;
                 align-items: center;
-                padding: 100px 0 40px 0; /* مسافة لهيدر اللوجو */
-                gap: 25px;
-                transform: translateY(-100%); /* إزاحة كاملة خارج الشاشة لمنع الانفتاح التلقائي */
-                opacity: 0;
-                pointer-events: none;
-                transition: var(--transition);
-                box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-                z-index: 999;
+                padding: 40px 0;
+                transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+                box-shadow: 0 10px 25px rgba(0,0,0,0.2);
             }
 
             .nav-menu.active {
-                transform: translateY(0); /* هبوط انسيابي للقائمة عند النقر فقط */
-                opacity: 1;
-                pointer-events: auto;
+                top: 80px;
             }
         }
     </style>
@@ -1246,7 +1164,7 @@
                 <ul class="nav-menu" id="nav-links">
                     <li><a href="#hero" class="nav-link active">الرئيسية</a></li>
                     <li><a href="#why-shs" class="nav-link">ميزتنا التنافسية</a></li>
-                    <li><a href="#services-tabs" class="nav-link">خدماتنا</a></li>
+                    <li><a href="#services-pillars" class="nav-link">خدماتنا</a></li>
                     <li><a href="#cases" class="nav-link">سابقة أعمالنا</a></li>
                     <li><a href="#contact" class="nav-link">تواصل معنا</a></li>
                 </ul>
@@ -1341,7 +1259,7 @@
                     <p>بدأت حكايتنا من قلب مكة المكرمة مع الشيخ عبد العزيز خوجير -رحمه الله- رائد خدمات الضيافة الذي كرس حياته لخدمة وفود الرحمن وزوار بيت الله الحرام بأرقى معايير الاستقبال والأصالة الحجازية.</p>
                     <p>اليوم، نواصل المسيرة تحت قيادة هندسية ومهنية متخصصة لترجمة هذا الإرث العريق إلى حلول تشغيلية واستشارية مبتكرة تساهم في تحقيق مستهدفات رؤية المملكة 2030 في قطاعي السياحة والضيافة الفاخرة.</p>
                     <div class="legacy-quote">
-                        <p>"نحن نخدم الله من خلال تفانينا المطلق in خدمة عملائنا وحماية أصولهم الاستثمارية."</p>
+                        <p>"نحن نخدم الله من خلال تفانينا المطلق في خدمة عملائنا وحماية أصولهم الاستثمارية."</p>
                         <span>- المغفور له بإذن الله الشيخ عبد العزيز خوجير</span>
                     </div>
                 </div>
@@ -1356,73 +1274,59 @@
         </div>
     </section>
 
-    <!-- الركائز الخدمية بتبويب تفاعلي (Interactive Services Tabs) -->
-    <section class="section-padding pillars-tabs-section" id="services-tabs">
+    <!-- ركائزنا الخدمية المتكاملة المحدثة بكروت النخبة الثلاثية المفتوحة (3-Column Elite Minimalist Cards) - جديد وبديل للتبويبات -->
+    <section class="section-padding pillars-cards-section" id="services-pillars">
         <div class="container">
             <div class="section-header text-center">
                 <h3>ركائزنا الخدمية المتكاملة</h3>
-                <p>تنقل عبر القطاعات التشغيلية الفنية التي نقدمها بلمسة تفاعلية واحدة واضحة</p>
+                <p>حلولنا التشغيلية والاستشارية الفاخرة مفتوحة بالكامل لتمهيد طريق استثمارك الفندقي</p>
             </div>
-            <div class="tabs-container">
-                <div class="tab-headers">
-                    <button class="tab-btn active" onclick="switchTab(event, 'tab-consultation')">الاستشارات الفنية</button>
-                    <button class="tab-btn" onclick="switchTab(event, 'tab-operations')">إدارة وتشغيل الفنادق</button>
-                    <button class="tab-btn" onclick="switchTab(event, 'tab-trading')">تجهيزات الضيافة (Trading)</button>
-                </div>
-                
-                <!-- محتوى الاستشارات الفنية -->
-                <div class="tab-content active" id="tab-consultation">
-                    <div class="tab-pane-text">
-                        <h4>الاستشارات الهندسية والفنية الفندقية</h4>
-                        <p>نعمل معكم من الخطوة الأولى لضمان ولادة مشروع فندقي قائم على أسس استثمارية سليمة ومتوافقة مع المعايير الدولية واللوائح التنظيمية المحلية.</p>
-                        <ul class="tab-features-list">
-                            <li>إعداد دراسات الجدوى المالية والتشغيلية المتكاملة وتقييم العوائد.</li>
-                            <li>تطوير المفاهيم الفندقية الفريدة وتصميم الهوية البصرية والمعمارية للعلامة التجارية.</li>
-                            <li>دراسة تحويل وتأهيل المنشآت الاقتصادية إلى فنادق من فئات أعلى بكفاءة مالية.</li>
-                            <li>إنهاء التراخيص والامتثال لوزارة السياحة والدفاع المدني والأمانات.</li>
+            
+            <div class="pillars-cards-grid">
+                <!-- كارت 1: الاستشارات الفنية -->
+                <div class="service-elite-card">
+                    <img class="service-elite-img" src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=800" alt="الاستشارات الهندسية الفندقية">
+                    <div class="service-elite-content">
+                        <h4>الاستشارات الفنية والترخيص</h4>
+                        <p>نعمل معكم لتأسيس مشروع فندقي متكامل قائم على دراسات استثمارية ومالية رصينة تتوافق مع اشتراطات الجهات السياحية والتنظيمية بالمملكة.</p>
+                        <ul class="service-elite-features">
+                            <li>إعداد دراسات الجدوى المالية والتشغيلية وتقييم العوائد.</li>
+                            <li>تطوير المفاهيم الفندقية الفريدة وتصميم الهوية المعمارية.</li>
+                            <li>دراسة تحويل وتجديد المباني لتتوافق مع التصنيفات المستهدفة.</li>
+                            <li>إنهاء التراخيص والامتثال لوزارة السياحة والدفاع المدني.</li>
                         </ul>
-                        <!-- زر حث على الإجراء السياقي المطور حديثاً لرفع التحويل (CRO Optimized CTA) -->
-                        <a href="#contact" class="btn btn-contextual">طلب استشارة فنية لمشروعك الفندقي</a>
-                    </div>
-                    <div class="tab-pane-visual">
-                        <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=800" alt="Technical Architectural Planning & Design">
+                        <a href="#contact" class="btn btn-contextual">طلب استشارة فنية لمشروعك</a>
                     </div>
                 </div>
 
-                <!-- محتوى التشغيل -->
-                <div class="tab-content" id="tab-operations">
-                    <div class="tab-pane-text">
-                        <h4>التشغيل الفندقي الاحترافي وتطوير المبيعات</h4>
-                        <p>نرفع الجاهزية التشغيلية للفندق عبر إدارة الموارد البشرية، وتحسين جودة الخدمة لضمان رفع التقييمات على المنصات العالمية وزيادة الربحية الإجمالية.</p>
-                        <ul class="tab-features-list">
-                            <li>إدارة متكاملة تحت مظلة هويتنا الفندقية (سجى) أو تمثيل المالك مع المشغلين العالميين.</li>
-                            <li>توفير وتدريب الكوادر الفندقية على معايير الضيافة الراقية.</li>
-                            <li>إدارة قنوات البيع المباشر والتسويق الإلكتروني لرفع نسب الإشغال.</li>
-                            <li>التدقيق والرقابة الفندقية الدورية لضمان الحفاظ على الجودة (Hotel Audits).</li>
+                <!-- كارت 2: إدارة وتشغيل الفنادق -->
+                <div class="service-elite-card">
+                    <img class="service-elite-img" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=800" alt="إدارة وتشغيل الفنادق">
+                    <div class="service-elite-content">
+                        <h4>إدارة وتشغيل الفنادق الاحترافية</h4>
+                        <p>نرفع الكفاءة التشغيلية للفندق عبر إدارة المبيعات، التسويق الرقمي، والموارد البشرية لضمان تحقيق أعلى معدلات إشغال وتقييمات للنزلاء.</p>
+                        <ul class="service-elite-features">
+                            <li>التشغيل تحت هويتنا المحلية (سجى) أو تمثيل المالك مع المشغلين.</li>
+                            <li>توفير وتدريب الكوادر الفندقية على أرقى المعايير.</li>
+                            <li>إدارة المبيعات والتسويق الرقمي المباشر لرفع الإشغال.</li>
+                            <li>إجراء التدقيق والرقابة الفندقية الدورية لضمان الجودة.</li>
                         </ul>
-                        <!-- زر حث على الإجراء السياقي المطور حديثاً لرفع التحويل (CRO Optimized CTA) -->
                         <a href="#contact" class="btn btn-contextual">مناقشة خطة تشغيل فندقك اليوم</a>
                     </div>
-                    <div class="tab-pane-visual">
-                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=800" alt="Luxury Hotel Front Desk and Operations">
-                    </div>
                 </div>
 
-                <!-- محتوى التجهيز والتموين - تم إزالة لوجو SOHO والسطر الخاص به تلبية لطلبكم لراحة العين -->
-                <div class="tab-content" id="tab-trading">
-                    <div class="tab-pane-text">
-                        <h4>تجهيز ومستلزمات الضيافة والتأثيث المستدام</h4>
-                        <p>نوفر حلاً متكاملاً للاستيراد والتأثيث والتأمين اللوجستي لأكبر الفنادق in مكة والمدينة والمملكة بالاعتماد على شراكات مع أرقى العلامات المستدامة.</p>
-                        <ul class="tab-features-list">
-                            <li>تأمين وتوريد الأثاث والمعدات والتجهيزات بالكامل (FF&E و SOE).</li>
-                            <li>الشراكة الحصرية مع علامة SOHO الأوروبية لتأمين أرقى مستلزمات العناية الصديقة للبيئة.</li>
-                            <li>تسجيل وتأمين مستندات الفحص والامتثال مع هيئة الغذاء والدواء ونظام سابر (SABER).</li>
+                <!-- كارت 3: تجهيزات الضيافة -->
+                <div class="service-elite-card">
+                    <img class="service-elite-img" src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=800" alt="تجهيزات الضيافة المستدامة">
+                    <div class="service-elite-content">
+                        <h4>تجهيزات ومستلزمات الضيافة (Trading)</h4>
+                        <p>نوفر حلاً متكاملاً للتأمين والاستيراد والتجهيز اللوجستي للفنادق، عبر تأمين المنتجات المسجلة والآمنة بيئياً بالشراكة مع علامات رائدة.</p>
+                        <ul class="service-elite-features">
+                            <li>تأمين وتوريد الأثاث والمعدات والتجهيزات بالكامل (FF&E).</li>
+                            <li>الشراكة الحصرية مع علامة SOHO الأوروبية للأمينات المستدامة.</li>
+                            <li>تسجيل وتأمين المنتجات في الغذاء والدواء ونظام سابر (SABER).</li>
                         </ul>
-                        <!-- زر حث على الإجراء السياقي المطور حديثاً لرفع التحويل (CRO Optimized CTA) -->
                         <a href="#contact" class="btn btn-contextual">طلب عرض أسعار مستلزمات فندقية</a>
-                    </div>
-                    <div class="tab-pane-visual">
-                        <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=800" alt="Premium Hotel Amenities & Sustainable Supplies">
                     </div>
                 </div>
             </div>
@@ -1511,10 +1415,10 @@
                             <p><strong>الحل:</strong> خلال 6 أشهر فقط وبتكلفة استثمارية بلغت 50 مليون ريال، قمنا بإعادة تخطيط وتصميم الغرف والمساحات العامة بالكامل، وبناء هوية جديدة ومطابخ حديثة.</p>
                             <p><strong>النتيجة:</strong> رفع تصنيف الفندق إلى 4 نجوم، وتحقيق المركز الأول على Booking.com بمعدلات إشغال قياسية.</p>
                             
-                            <!-- إضافة زر تواصل مخصص في كارت سابقة الأعمال (CRO Card Action) -->
-                            <div style="margin-top: 15px; border-top: 1px solid rgba(52, 42, 44, 0.05); padding-top: 12px;">
-                                <a href="#contact" class="case-action-link" style="font-size: 13.5px; font-weight: 700; color: var(--secondary-color); display: flex; align-items: center; gap: 5px;">
-                                    استفسر عن حل لمشروع فندقي مماثل <span>←</span>
+                            <!-- ترقية الرابط النصي إلى زر متكامل ذو خلفية إسبريسو وحواف متميزة لرفع التحويل (Aligned Grid Buttons) -->
+                            <div style="margin-top: auto; border-top: 1px solid rgba(52, 42, 44, 0.05); padding-top: 15px; width: 100%;">
+                                <a href="#contact" class="btn btn-primary" style="width: 100%; font-size: 13.5px; display: inline-block; padding: 12px 20px;">
+                                    استفسر عن حل لمشروع مماثل <span>←</span>
                                 </a>
                             </div>
                         </div>
@@ -1534,10 +1438,10 @@
                             <p><strong>الحل:</strong> بناء مطبخ مركزي يخدم 4,000 شخص وافتتاح 7 منافذ ممتازة للأغذية والمشروبات، وتطوير البنية التحتية والشبكات بالكامل للفندق.</p>
                             <p><strong>النتيجة:</strong> تشغيل ناجح ومستدام لأحد أكبر الفنادق اللوجستية في المنطقة المركزية بالمدينة المنورة بجوار الحرم النبوي.</p>
                             
-                            <!-- إضافة زر تواصل مخصص في كارت سابقة الأعمال (CRO Card Action) -->
-                            <div style="margin-top: 15px; border-top: 1px solid rgba(52, 42, 44, 0.05); padding-top: 12px;">
-                                <a href="#contact" class="case-action-link" style="font-size: 13.5px; font-weight: 700; color: var(--secondary-color); display: flex; align-items: center; gap: 5px;">
-                                    استفسر عن حل لمشروع فندقي مماثل <span>←</span>
+                            <!-- ترقية الرابط النصي إلى زر متكامل ذو خلفية إسبريسو وحواف متميزة لرفع التحويل (Aligned Grid Buttons) -->
+                            <div style="margin-top: auto; border-top: 1px solid rgba(52, 42, 44, 0.05); padding-top: 15px; width: 100%;">
+                                <a href="#contact" class="btn btn-primary" style="width: 100%; font-size: 13.5px; display: inline-block; padding: 12px 20px;">
+                                    استفسر عن حل لمشروع مماثل <span>←</span>
                                 </a>
                             </div>
                         </div>
@@ -1551,16 +1455,16 @@
                         <span class="case-badge">جدة التاريخية</span>
                     </div>
                     <div class="case-content">
-                        <h4>فندق الخيام</h4> <!-- تم تبسيط وتطهير العنوان بناءً على طلبكم ليكون واثقاً ومباشراً -->
+                        <h4>فندق الخيام</h4> 
                         <div class="case-details">
                             <p><strong>التحدي:</strong> تحديث فندق الخيام التاريخي في منطقة "البلد" بجدة (المدرجة باليونسكو) ليصبح فندقاً تراثياً (Boutique) من فئة 3 نجوم.</p>
                             <p><strong>الحل:</strong> إجراء تعديلات هيكلية وتصميمية للامتثال لمتطلبات الدفاع المدني وهيئة السياحة المحدثة مع حماية الطابع المعماري الحجازي العريق.</p>
                             <p><strong>النتيجة:</strong> ترخيص الفندق وإعادة إحياء قيمته الاستثمارية مع الحفاظ على هويته التراثية الفاخرة.</p>
                             
-                            <!-- إضافة زر تواصل مخصص في كارت سابقة الأعمال (CRO Card Action) -->
-                            <div style="margin-top: 15px; border-top: 1px solid rgba(52, 42, 44, 0.05); padding-top: 12px;">
-                                <a href="#contact" class="case-action-link" style="font-size: 13.5px; font-weight: 700; color: var(--secondary-color); display: flex; align-items: center; gap: 5px;">
-                                    استفسر عن حل لمشروع فندقي مماثل <span>←</span>
+                            <!-- ترقية الرابط النصي إلى زر متكامل ذو خلفية إسبريسو وحواف متميزة لرفع التحويل (Aligned Grid Buttons) -->
+                            <div style="margin-top: auto; border-top: 1px solid rgba(52, 42, 44, 0.05); padding-top: 15px; width: 100%;">
+                                <a href="#contact" class="btn btn-primary" style="width: 100%; font-size: 13.5px; display: inline-block; padding: 12px 20px;">
+                                    استفسر عن حل لمشروع مماثل <span>←</span>
                                 </a>
                             </div>
                         </div>
@@ -1682,28 +1586,14 @@
 
         mobileMenuBtn.addEventListener('click', function() {
             navLinks.classList.toggle('active');
-            mobileMenuBtn.classList.toggle('active'); // تفعيل حركة الهامبرجر التفاعلية الرائعة
         });
 
         // إغلاق القائمة تلقائياً عند الضغط على الروابط
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
-                mobileMenuBtn.classList.remove('active');
             });
         });
-
-        // التحكم التفاعلي بالتبويبات لقسم الخدمات (Interactive Tabs)
-        function switchTab(event, tabId) {
-            const tabButtons = document.querySelectorAll('.tab-btn');
-            const tabContents = document.querySelectorAll('.tab-content');
-            
-            tabButtons.forEach(btn => btn.classList.remove('active'));
-            tabContents.forEach(content => content.classList.remove('active'));
-            
-            event.currentTarget.classList.add('active');
-            document.getElementById(tabId).classList.add('active');
-        }
 
         // التحكم التفاعلي بقسم الأسئلة الشائعة (Accordion FAQ Toggle)
         function toggleFaq(headerElement) {
