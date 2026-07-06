@@ -1,0 +1,1750 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سجى لحلول الضيافة (SHS) | تصميم وتشغيل وتجهيز الفنادق الفاخرة</title>
+    
+    <!-- خط Tajawal الفاخر -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* نظام ألوان البراند المعتمد (Brand Color System) */
+        :root {
+            --primary-color: #342A2C;       /* بني إسبريسو داكن */
+            --secondary-color: #B56947;     /* التراكوتا / الطيني المحروق */
+            --secondary-hover: #9D5A3C;     /* تراكوتا داكن للتفاعل */
+            --accent-color: #D4A373;        /* الذهبي الرملي المكتوم */
+            --sage-green: #97A99C;          /* أخضر الميرمية المكتوم */
+            --bg-stone: #EAE5E1;            /* الرمادي الحجري الفاتح */
+            --bg-white: #FFFFFF;            /* الأبيض النقي */
+            --text-dark: #342A2C;
+            --text-body: #554D4F;           /* رمادي داكن مائل للبني مريح للعين */
+            --text-light: #FFFFFF;
+            --font-family: 'Tajawal', sans-serif;
+            --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            --border-radius: 8px;
+            --shadow-subtle: 0 10px 35px rgba(52, 42, 44, 0.03);
+            --shadow-premium: 0 20px 50px rgba(52, 42, 44, 0.07);
+        }
+
+        /* إعادة تهيئة الأساسيات */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-family);
+            color: var(--text-body);
+            background-color: var(--bg-white);
+            line-height: 1.8;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .section-padding {
+            padding: 110px 0;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        /* تحسين عرض الصور الحقيقية لتبدو حادة ونقية */
+        img {
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+        }
+
+        /* الأزرار التفاعلية الراقية */
+        .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            border-radius: var(--border-radius);
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--secondary-color);
+            color: var(--text-light);
+            box-shadow: 0 6px 20px rgba(181, 105, 71, 0.25);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(181, 105, 71, 0.4);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        /* أزرار الحث على الإجراء السياقية المضافة حديثاً (CRO Contextual CTAs) */
+        .btn-contextual {
+            display: inline-block;
+            padding: 12px 28px;
+            font-size: 14px;
+            font-weight: 700;
+            background-color: transparent;
+            border: 1px solid var(--secondary-color);
+            color: var(--secondary-color);
+            border-radius: var(--border-radius);
+            margin-top: 25px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .btn-contextual:hover {
+            background-color: var(--secondary-color);
+            color: var(--text-light);
+            transform: translateY(-2px);
+        }
+
+        /* الهيدر الفاخر الشفاف */
+        header {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 30px 0;
+            transition: var(--transition);
+        }
+
+        header.sticky {
+            position: fixed;
+            background-color: rgba(52, 42, 44, 0.96);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* تكبير الشعار وتفعيل التنعيم التلقائي للمتصفحات لمنع البكسلة */
+        .logo img {
+            height: 110px; 
+            width: auto;
+            display: block;
+            object-fit: contain;
+            transition: var(--transition);
+            
+            image-rendering: auto; 
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+
+        header.sticky .logo img {
+            height: 80px; 
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 35px;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            font-weight: 500;
+            font-size: 15px;
+            position: relative;
+            padding: 6px 0;
+            opacity: 0.9;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary-color);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            width: 28px;
+            height: 2px;
+            background-color: var(--text-light);
+            transition: var(--transition);
+        }
+
+        /* حركة همبرجر تفاعلية وممتازة تتحول لعلامة X عند الفتح */
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        /* تعديل ارتفاع قسم الصدارة لرفع الأرقام الإحصائية للأعلى فوق خط الطي (Hero Section) */
+        .hero {
+            position: relative;
+            height: 85vh; 
+            min-height: 650px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            color: var(--text-light);
+        }
+
+        .hero-video-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -2;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to left, rgba(52, 42, 44, 0.9), rgba(52, 42, 44, 0.6));
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 750px;
+            text-align: right;
+        }
+
+        .hero-content h2 {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1.4;
+            margin-bottom: 25px;
+            color: var(--text-light);
+        }
+
+        .hero-content p {
+            font-size: 17.5px;
+            line-height: 1.9;
+            margin-bottom: 45px;
+            color: #E2E2E2;
+        }
+
+        .hero-btns {
+            display: flex;
+            justify-content: flex-start;
+            gap: 20px;
+        }
+
+        /* قسم الأرقام والإحصائيات (Key Metrics) */
+        .metrics-section {
+            background-color: var(--bg-white);
+            padding: 100px 0;
+            border-bottom: 1px solid rgba(52, 42, 44, 0.05);
+        }
+
+        .editorial-metrics-wrapper {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr auto 1fr;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .editorial-metric-item {
+            text-align: center;
+            padding: 10px 30px;
+            transition: var(--transition);
+        }
+
+        .editorial-metric-item:hover {
+            transform: translateY(-4px);
+        }
+
+        .metric-tag {
+            display: inline-block;
+            padding: 6px 16px;
+            font-size: 12.5px;
+            font-weight: 700;
+            border-radius: 50px;
+            margin-bottom: 18px;
+            letter-spacing: 0.3px;
+        }
+
+        .tag-sage {
+            background-color: rgba(151, 169, 156, 0.12);
+            color: #798C7E;
+        }
+
+        .tag-terracotta {
+            background-color: rgba(181, 105, 71, 0.08);
+            color: var(--secondary-color);
+        }
+
+        .tag-gold {
+            background-color: rgba(212, 163, 115, 0.12);
+            color: #BD8E5E;
+        }
+
+        .metric-num-large {
+            font-size: 56px;
+            font-weight: 800;
+            color: var(--primary-color);
+            line-height: 1.1;
+            margin-bottom: 15px;
+            display: block;
+            letter-spacing: -1px;
+        }
+
+        .metric-unit {
+            font-size: 20px;
+            font-weight: 500;
+            color: var(--text-body);
+            margin-right: 2px;
+        }
+
+        .metric-desc {
+            font-size: 14.5px;
+            color: var(--text-body);
+            line-height: 1.8;
+            font-weight: 400;
+            max-width: 320px;
+            margin: 0 auto;
+        }
+
+        .metric-divider {
+            width: 1px;
+            height: 140px;
+            background: linear-gradient(to bottom, transparent, var(--accent-color), transparent);
+            opacity: 0.5;
+            align-self: center;
+        }
+
+        /* قسم العناوين */
+        .section-header {
+            margin-bottom: 60px;
+        }
+
+        .section-header h3 {
+            font-size: 34px;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 12px;
+        }
+
+        .section-header h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+
+        .section-header p {
+            color: #706866;
+            font-size: 16px;
+            max-width: 650px;
+            margin: 15px auto 0 auto;
+        }
+
+        /* قسم الشراكة مع سياد القابضة (SIAD Subsidiary Section) */
+        .siad-section {
+            background-color: var(--bg-stone);
+        }
+
+        .siad-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .siad-text h3 {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .siad-text p {
+            font-size: 15px; 
+            line-height: 1.85;
+            color: var(--text-body);
+            margin-bottom: 25px;
+        }
+
+        .siad-ecosystem-title {
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .siad-ecosystem-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .ecosystem-item {
+            background: var(--bg-white);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-subtle);
+            border-right: 3px solid var(--secondary-color);
+        }
+
+        .ecosystem-item h5 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .ecosystem-item p {
+            font-size: 13.5px;
+            color: var(--text-body);
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+
+        .siad-visual {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .siad-logo-card {
+            background-color: var(--bg-white);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-premium);
+            text-align: center;
+            border-bottom: 4px solid var(--accent-color);
+        }
+
+        .siad-logo-card img {
+            max-width: 240px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .siad-logo-card span {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--secondary-color);
+            letter-spacing: 1px;
+            display: block;
+        }
+
+        /* قسم رسالة الإرث والقيادة الفاخرة (Executive Legacy) */
+        .legacy-section {
+            background-color: var(--bg-white);
+            display: flex;
+            align-items: center;
+        }
+
+        .legacy-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .legacy-text h3 {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+        }
+
+        .legacy-text p {
+            font-size: 16px;
+            line-height: 1.85;
+            color: var(--text-body);
+            margin-bottom: 20px;
+        }
+
+        .legacy-quote {
+            background-color: var(--bg-stone);
+            padding: 30px;
+            border-right: 4px solid var(--secondary-color);
+            font-style: italic;
+            border-radius: var(--border-radius);
+            margin-top: 30px;
+            box-shadow: var(--shadow-subtle);
+        }
+
+        .legacy-quote p {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .legacy-quote span {
+            font-size: 14px;
+            color: var(--text-body);
+            font-weight: 500;
+            font-style: normal;
+        }
+
+        .legacy-visual {
+            position: relative;
+        }
+
+        .legacy-visual img {
+            width: 100%;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-premium);
+        }
+
+        .legacy-badge {
+            position: absolute;
+            bottom: -20px;
+            left: -20px;
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-premium);
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .legacy-badge h5 {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--accent-color);
+        }
+
+        .legacy-badge p {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        /* الركائز الخدمية بتبويب تفاعلي (Interactive Services Tabs) */
+        .pillars-tabs-section {
+            background-color: var(--bg-stone);
+        }
+
+        .tabs-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* تحسين التبويب تفادياً لأي تمدد أو تزاحم بصري */
+        .tab-headers {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 50px;
+            border-bottom: 2px solid rgba(52, 42, 44, 0.08);
+            padding-bottom: 15px;
+            flex-wrap: wrap; /* لمنع تداخل الحقول على الشاشات المتوسطة والجوالات */
+        }
+
+        /* معالجة فلاتر وحدود الأزرار برمجياً لمنع إظهار ستايل المتصفحات الافتراضي القبيح */
+        .tab-btn {
+            background: transparent !important;
+            border: 0 !important; /* تصفير حاد لأي حدود تفرضها المتصفحات */
+            outline: 0 !important;
+            box-shadow: none !important;
+            padding: 15px 30px;
+            font-family: var(--font-family);
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--text-body);
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition);
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+
+        .tab-btn::after {
+            content: '';
+            position: absolute;
+            bottom: -17px;
+            right: 0;
+            width: 0;
+            height: 3px;
+            background-color: var(--secondary-color);
+            transition: var(--transition);
+        }
+
+        .tab-btn.active {
+            color: var(--secondary-color);
+        }
+
+        .tab-btn.active::after {
+            width: 100%;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .tab-pane-text h4 {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .tab-pane-text p {
+            font-size: 15.5px;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        .tab-features-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .tab-features-list li {
+            position: relative;
+            padding-right: 25px;
+            font-size: 14.5px;
+            color: var(--text-body);
+        }
+
+        .tab-features-list li::before {
+            content: "✓";
+            position: absolute;
+            right: 0;
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+
+        .tab-pane-visual img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-subtle);
+        }
+
+        /* الميزة التنافسية (Why SHS?) */
+        .why-shs {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+        }
+
+        .why-shs .section-header h3 {
+            color: var(--text-dark);
+        }
+
+        .why-shs-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .why-card {
+            padding: 35px;
+            border-right: 4px solid var(--accent-color);
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            transition: var(--transition);
+        }
+
+        .why-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-right-color: var(--secondary-color);
+            transform: scale(1.02);
+        }
+
+        .why-card h4 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+
+        .why-card p {
+            font-size: 14.5px;
+            color: #D3CDCB;
+            line-height: 1.8;
+        }
+
+        /* خط ومراحل سير عمل المشروع الفني (Typical Project Map) */
+        .project-map-section {
+            background-color: var(--bg-white);
+        }
+
+        .timeline {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            position: relative;
+            margin-top: 40px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 25px;
+            right: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--accent-color);
+            z-index: 1;
+        }
+
+        .timeline-step {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 0 10px;
+        }
+
+        .timeline-node {
+            width: 50px;
+            height: 50px;
+            background-color: var(--bg-stone);
+            border: 3px solid var(--secondary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px auto;
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--secondary-color);
+            transition: var(--transition);
+            box-shadow: var(--shadow-subtle);
+        }
+
+        .timeline-step:hover .timeline-node {
+            background-color: var(--secondary-color);
+            color: var(--text-light);
+            transform: scale(1.1);
+        }
+
+        .timeline-step h4 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .timeline-step p {
+            font-size: 13.5px;
+            color: var(--text-body);
+            line-height: 1.6;
+        }
+
+        /* قصص الأثر والنجاح (Case Studies) */
+        .cases {
+            background-color: var(--bg-stone);
+        }
+
+        .cases-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .case-card {
+            background: var(--bg-white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-subtle);
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition);
+        }
+
+        .case-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-premium);
+        }
+
+        /* تفعيل روابط الحث على الإجراء بداخل الكروت كأداة تحويل قوية (CRO Cards Link) */
+        .case-action-link {
+            transition: var(--transition);
+        }
+
+        .case-action-link:hover {
+            color: var(--secondary-hover) !important;
+            transform: translateX(-4px);
+        }
+
+        .case-action-link span {
+            display: inline-block;
+            transition: var(--transition);
+        }
+
+        .case-action-link:hover span {
+            transform: translateX(-4px);
+        }
+
+        /* هيكلة وتعديل عرض صور الكروت الحقيقية لضمان أعلى جودة وحدة بصرياً */
+        .case-img-wrapper {
+            width: 100%;
+            height: 240px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .case-img-element {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* معالجة فندق الخيام لعرض كامل الواجهة المعمارية رأسياً دون اقتطاع عشوائي */
+            object-position: center top; 
+            transition: var(--transition);
+            image-rendering: -webkit-optimize-contrast; /* معالجة وتحسين دقة حواف الصورة */
+            image-rendering: crisp-edges;
+        }
+
+        .case-card:hover .case-img-element {
+            transform: scale(1.08); /* زووم هادئ ومريح للعين عند الحوم */
+        }
+
+        .case-badge {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            background-color: var(--sage-green);
+            color: var(--text-light);
+            padding: 6px 14px;
+            font-size: 12px;
+            font-weight: 700;
+            border-radius: 4px;
+            z-index: 10;
+        }
+
+        .case-content {
+            padding: 35px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .case-content h4 {
+            font-size: 19px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 18px;
+            border-bottom: 1px solid rgba(52, 42, 44, 0.08);
+            padding-bottom: 12px;
+        }
+
+        .case-details {
+            font-size: 14px;
+            color: var(--text-body);
+        }
+
+        .case-details p {
+            margin-bottom: 14px;
+            line-height: 1.75;
+        }
+
+        .case-details strong {
+            color: var(--secondary-color);
+            display: block;
+            margin-bottom: 4px;
+            font-weight: 700;
+        }
+
+        /* الأسئلة الشائعة الأنيقة (FAQ Accordion) */
+        .faq-section {
+            background-color: var(--bg-white);
+        }
+
+        .faq-container {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background-color: var(--bg-stone);
+            border-radius: var(--border-radius);
+            margin-bottom: 15px;
+            box-shadow: var(--shadow-subtle);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .faq-header {
+            padding: 22px 30px;
+            font-size: 16.5px;
+            font-weight: 700;
+            color: var(--primary-color);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+        }
+
+        .faq-icon {
+            font-size: 18px;
+            color: var(--secondary-color);
+            transition: var(--transition);
+        }
+
+        .faq-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            padding: 0 30px;
+            font-size: 14.5px;
+            line-height: 1.8;
+            color: var(--text-body);
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-item.active .faq-body {
+            padding-bottom: 25px;
+        }
+
+        /* نموذج التواصل الفعال (Contact Section) */
+        .contact-section {
+            background-color: var(--bg-stone);
+        }
+
+        .contact-wrapper {
+            max-width: 850px;
+            margin: 0 auto;
+            background-color: var(--bg-white);
+            padding: 55px;
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(52, 42, 44, 0.05);
+            box-shadow: var(--shadow-premium);
+        }
+
+        /* تباعد مريح ومنظم للحقول لتقليل المقاومة */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px; /* تباعد مريح ورأسي محسّن */
+            margin-bottom: 25px;
+        }
+
+        .form-group-full {
+            grid-column: span 2;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 14.5px;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        /* تخصيص مظهر حقول المدخلات وتوسيعها لتقليل مقاومة الزائر */
+        .form-control {
+            width: 100%;
+            padding: 16px 20px;
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(52, 42, 44, 0.15);
+            background-color: var(--bg-stone);
+            color: var(--text-dark);
+            font-family: var(--font-family);
+            font-size: 14.5px;
+            transition: var(--transition);
+            /* إزالة السهم الافتراضي القبيح في خيار select وتخصيصه لبراند فاخر */
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+
+        /* حقل الاختيار المخصص المنسدل الفاخر */
+        select.form-control {
+            background-image: url("data:image/svg+xml;utf8,<svg fill='%23B56947' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+            background-repeat: no-repeat;
+            background-position: left 15px center;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 4px rgba(181, 105, 71, 0.15);
+            background-color: var(--bg-white);
+        }
+
+        .privacy-note {
+            font-size: 12px;
+            color: var(--text-body);
+            margin-top: 18px;
+            text-align: center;
+            opacity: 0.85;
+        }
+
+        /* تذييل الصفحة */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            padding: 50px 0;
+            font-size: 14px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-copyright {
+            opacity: 0.8;
+        }
+
+        /* تأثيرات الظهور */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* التجاوب والتحول المتكامل لشاشات الجوال والتطابق التام للواجهات والتبويبات */
+        @media (max-width: 991px) {
+            .metrics-grid, .why-shs-grid, .cases-grid, .legacy-grid, .siad-grid, .tab-content.active {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .timeline {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 40px;
+            }
+            .timeline::before {
+                display: none;
+            }
+            .legacy-grid, .siad-grid, .tab-content.active {
+                grid-template-columns: 1fr;
+            }
+            .editorial-metrics-wrapper {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .metric-divider {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section-padding {
+                padding: 70px 0;
+            }
+
+            .hero {
+                height: auto;
+                min-height: auto;
+                padding: 150px 0 90px 0;
+            }
+
+            .hero-content h2 {
+                font-size: 32px;
+                text-align: center;
+            }
+
+            .hero-content p {
+                text-align: center;
+            }
+
+            /* تحويل الأزرار للجوال لتأخذ العرض الكامل لزيادة نقر الإبهام لسرعة الاتصال */
+            .btn {
+                width: 100% !important;
+                max-width: 100% !important;
+                padding: 14px 24px;
+                font-size: 14px;
+            }
+
+            .hero-btns {
+                flex-direction: column;
+                width: 100%;
+                gap: 12px;
+            }
+
+            .why-shs-grid, .cases-grid, .timeline, .siad-ecosystem-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group-full {
+                grid-column: span 1;
+            }
+
+            .contact-wrapper {
+                padding: 35px 25px; /* تقليص الحواف للجوال لمنع التداخل والقطع الجانبي */
+            }
+
+            /* معالجة انهيار التبويبات الفنية الخدمية للجوال بشكل رأسي منظم بالكامل */
+            .tab-headers {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 8px;
+                border-bottom: none;
+                padding-bottom: 0;
+            }
+
+            .tab-btn {
+                width: 100% !important;
+                padding: 12px 15px;
+                background-color: var(--bg-stone) !important;
+                border-radius: var(--border-radius) !important;
+                border: 1px solid rgba(52, 42, 44, 0.08) !important;
+                font-size: 15px;
+            }
+
+            .tab-btn::after {
+                display: none; /* إخفاء الخط السفلي للجوال واستبداله بباك جراوند تفاعلية */
+            }
+
+            .tab-btn.active {
+                background-color: var(--primary-color) !important;
+                color: var(--text-light) !important;
+                border-color: var(--primary-color) !important;
+            }
+
+            .tab-content.active {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                margin-top: 30px;
+            }
+
+            .tab-pane-visual img {
+                height: 220px;
+            }
+            
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: auto;
+                max-height: 100vh;
+                background-color: var(--primary-color);
+                flex-direction: column;
+                align-items: center;
+                padding: 100px 0 40px 0; /* مسافة لهيدر اللوجو */
+                gap: 25px;
+                transform: translateY(-100%); /* إزاحة كاملة خارج الشاشة لمنع الانفتاح التلقائي */
+                opacity: 0;
+                pointer-events: none;
+                transition: var(--transition);
+                box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+                z-index: 999;
+            }
+
+            .nav-menu.active {
+                transform: translateY(0); /* هبوط انسيابي للقائمة عند النقر فقط */
+                opacity: 1;
+                pointer-events: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- الهيدر الفاخر الشفاف (Sticky Header) -->
+    <header id="main-header">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <img src="https://sajahospitality.com/wp-content/uploads/2022/02/2021_SAJA-Hospitality-Solutions_Final-Logo_full-colour-inverted.png" alt="Saja Hospitality Solutions Logo">
+                </div>
+                <div class="menu-toggle" id="mobile-menu-btn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <ul class="nav-menu" id="nav-links">
+                    <li><a href="#hero" class="nav-link active">الرئيسية</a></li>
+                    <li><a href="#why-shs" class="nav-link">ميزتنا التنافسية</a></li>
+                    <li><a href="#services-tabs" class="nav-link">خدماتنا</a></li>
+                    <li><a href="#cases" class="nav-link">سابقة أعمالنا</a></li>
+                    <li><a href="#contact" class="nav-link">تواصل معنا</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- قسم الصدارة المائل والمبتكر بخلفية فيديو (Asymmetric Hero Section) -->
+    <section class="hero" id="hero">
+        <video autoplay muted loop playsinline class="hero-video-bg">
+            <source src="https://sajahospitality.com/wp-content/uploads/2022/02/SHS_HomePage_Video_2_compressed.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h2>حوّل استثمارك العقاري إلى وجهة فندقية رائدة بعوائد مستدامة</h2>
+                <p>نضع بين يديك خبرة تمتد لأكثر من 65 عاماً في قطاع الضيافة بالمملكة العربية السعودية. كجزء من مجموعة سياد القابضة، نرافقك من مرحلة دراسة الجدوى وتطوير المفاهيم الهندسية، وحتى التشغيل الفعلي وتأمين مستلزمات الضيافة لضمان ريادة أصولك الفندقية وتقليل مخاطر الاستثمار.</p>
+                <div class="hero-btns">
+                    <a href="#contact" class="btn btn-primary">احجز استشارتك المجانية الآن</a>
+                    <a href="#cases" class="btn btn-secondary">تصفح سابقة أعمالنا</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الأرقام وحقائق من مسيرتنا بتصميم إحصائي ناعم (Key Metrics) -->
+    <section class="metrics-section" id="metrics">
+        <div class="container">
+            <div class="editorial-metrics-wrapper">
+                
+                <!-- الإحصائية الأولى -->
+                <div class="editorial-metric-item">
+                    <span class="metric-tag tag-sage">إرث وتاريخ ممتد</span>
+                    <span class="metric-num-large">+65 <span class="metric-unit">عاماً</span></span>
+                    <p class="metric-desc">من العمل المتواصل في خدمة قطاع الضيافة ووفود الرحمن في المدن المقدسة والمملكة.</p>
+                </div>
+                
+                <!-- فاصل رأسي انسيابي -->
+                <div class="metric-divider"></div>
+                
+                <!-- الإحصائية الثانية -->
+                <div class="editorial-metric-item">
+                    <span class="metric-tag tag-terracotta">قدرات تشغيلية ضخمة</span>
+                    <span class="metric-num-large">1,290+ <span class="metric-unit">غرفة</span></span>
+                    <p class="metric-desc">سعة فندق "أنوار المدينة موفنبيك" (أكبر فندق بالمدينة المنورة)، والذي قمنا بإعادة تأهيله وتطويره بشكل كامل.</p>
+                </div>
+                
+                <!-- فاصل رأسي انسيابي -->
+                <div class="metric-divider"></div>
+                
+                <!-- الإحصائية الثالثة -->
+                <div class="editorial-metric-item">
+                    <span class="metric-tag tag-gold">الريادة والتميز التجاري</span>
+                    <span class="metric-num-large">المرتبة #1</span>
+                    <p class="metric-desc">تصنيف فندق "سجى المدينة" على Booking.com بين منافسيه بعد عملية إعادة الهيكلة والتطوير الفني والتشغيلي.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم شراكة استراتيجية مدعومة بملاءة سياد القابضة (SIAD Subsidiary Section) -->
+    <section class="section-padding siad-section" id="siad-subsidiary">
+        <div class="container">
+            <div class="siad-grid">
+                <div class="siad-text">
+                    <h3>بنية تشغيلية متكاملة تحت غطاء "سياد القابضة"</h3>
+                    <p>نفتخر في <strong>سجى لحلول الضيافة (SHS)</strong> بكوننا الذراع الاستشاري والتشغيلي المتخصص التابع لـ <strong>مجموعة سياد القابضة (SIAD Holding)</strong>، وهي واحدة من كبرى المجموعات الرائدة في قطاعات الحج، العمرة، السياحة، والخدمات اللوجستية في المملكة العربية السعودية.</p>
+                    <p>هذا الارتباط الاستراتيجي يمنح عملائنا قيمة مضافة فريدة لا تتوفر لدى مكاتب الاستشارات التقليدية؛ حيث نستند مباشرة إلى منظومة وشبكة لوجستية متكاملة تضمن استقرار ونمو منشأتك الفندقية.</p>
+                    
+                    <!-- زر تفعيل القوة اللوجستية للمجموعة لرفع التحويل (CRO SIAD CTA) -->
+                    <div style="margin-top: 35px; text-align: right;">
+                        <a href="#contact" class="btn btn-primary">سخّر قوة وملاءة مجموعتنا لتأمين منشأتك الآن</a>
+                    </div>
+                </div>
+                <div class="siad-visual">
+                    <div class="siad-logo-card">
+                        <img src="https://siadholding.com/wp-content/uploads/2020/02/2019_SIAD_Holding_LOGOS_Horizontal_FullColour_900px.jpg" alt="SIAD Holding Group Logo">
+                        <span>إحدى شركات مجموعة سياد القابضة</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم رسالة الإرث والقيادة الفاخرة (Executive Legacy) -->
+    <section class="section-padding legacy-section" id="legacy">
+        <div class="container">
+            <div class="legacy-grid">
+                <div class="legacy-text">
+                    <h3>أصالة الماضي تلتقي برؤية المستقبل</h3>
+                    <p>بدأت حكايتنا من قلب مكة المكرمة مع الشيخ عبد العزيز خوجير -رحمه الله- رائد خدمات الضيافة الذي كرس حياته لخدمة وفود الرحمن وزوار بيت الله الحرام بأرقى معايير الاستقبال والأصالة الحجازية.</p>
+                    <p>اليوم، نواصل المسيرة تحت قيادة هندسية ومهنية متخصصة لترجمة هذا الإرث العريق إلى حلول تشغيلية واستشارية مبتكرة تساهم في تحقيق مستهدفات رؤية المملكة 2030 في قطاعي السياحة والضيافة الفاخرة.</p>
+                    <div class="legacy-quote">
+                        <p>"نحن نخدم الله من خلال تفانينا المطلق in خدمة عملائنا وحماية أصولهم الاستثمارية."</p>
+                        <span>- المغفور له بإذن الله الشيخ عبد العزيز خوجير</span>
+                    </div>
+                </div>
+                <div class="legacy-visual">
+                    <img src="https://image-tc.galaxy.tf/wijpeg-1lgnmgcfiqtjtcir2jxmivl2d/exterior-1.jpg" alt="Saja Makkah Exterior Legacy">
+                    <div class="legacy-badge">
+                        <h5>بين الحرمين الشريفين</h5>
+                        <p>بصمة تشغيلية فريدة في مكة والمدينة</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- الركائز الخدمية بتبويب تفاعلي (Interactive Services Tabs) -->
+    <section class="section-padding pillars-tabs-section" id="services-tabs">
+        <div class="container">
+            <div class="section-header text-center">
+                <h3>ركائزنا الخدمية المتكاملة</h3>
+                <p>تنقل عبر القطاعات التشغيلية الفنية التي نقدمها بلمسة تفاعلية واحدة واضحة</p>
+            </div>
+            <div class="tabs-container">
+                <div class="tab-headers">
+                    <button class="tab-btn active" onclick="switchTab(event, 'tab-consultation')">الاستشارات الفنية</button>
+                    <button class="tab-btn" onclick="switchTab(event, 'tab-operations')">إدارة وتشغيل الفنادق</button>
+                    <button class="tab-btn" onclick="switchTab(event, 'tab-trading')">تجهيزات الضيافة (Trading)</button>
+                </div>
+                
+                <!-- محتوى الاستشارات الفنية -->
+                <div class="tab-content active" id="tab-consultation">
+                    <div class="tab-pane-text">
+                        <h4>الاستشارات الهندسية والفنية الفندقية</h4>
+                        <p>نعمل معكم من الخطوة الأولى لضمان ولادة مشروع فندقي قائم على أسس استثمارية سليمة ومتوافقة مع المعايير الدولية واللوائح التنظيمية المحلية.</p>
+                        <ul class="tab-features-list">
+                            <li>إعداد دراسات الجدوى المالية والتشغيلية المتكاملة وتقييم العوائد.</li>
+                            <li>تطوير المفاهيم الفندقية الفريدة وتصميم الهوية البصرية والمعمارية للعلامة التجارية.</li>
+                            <li>دراسة تحويل وتأهيل المنشآت الاقتصادية إلى فنادق من فئات أعلى بكفاءة مالية.</li>
+                            <li>إنهاء التراخيص والامتثال لوزارة السياحة والدفاع المدني والأمانات.</li>
+                        </ul>
+                        <!-- زر حث على الإجراء السياقي المطور حديثاً لرفع التحويل (CRO Optimized CTA) -->
+                        <a href="#contact" class="btn btn-contextual">طلب استشارة فنية لمشروعك الفندقي</a>
+                    </div>
+                    <div class="tab-pane-visual">
+                        <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=800" alt="Technical Architectural Planning & Design">
+                    </div>
+                </div>
+
+                <!-- محتوى التشغيل -->
+                <div class="tab-content" id="tab-operations">
+                    <div class="tab-pane-text">
+                        <h4>التشغيل الفندقي الاحترافي وتطوير المبيعات</h4>
+                        <p>نرفع الجاهزية التشغيلية للفندق عبر إدارة الموارد البشرية، وتحسين جودة الخدمة لضمان رفع التقييمات على المنصات العالمية وزيادة الربحية الإجمالية.</p>
+                        <ul class="tab-features-list">
+                            <li>إدارة متكاملة تحت مظلة هويتنا الفندقية (سجى) أو تمثيل المالك مع المشغلين العالميين.</li>
+                            <li>توفير وتدريب الكوادر الفندقية على معايير الضيافة الراقية.</li>
+                            <li>إدارة قنوات البيع المباشر والتسويق الإلكتروني لرفع نسب الإشغال.</li>
+                            <li>التدقيق والرقابة الفندقية الدورية لضمان الحفاظ على الجودة (Hotel Audits).</li>
+                        </ul>
+                        <!-- زر حث على الإجراء السياقي المطور حديثاً لرفع التحويل (CRO Optimized CTA) -->
+                        <a href="#contact" class="btn btn-contextual">مناقشة خطة تشغيل فندقك اليوم</a>
+                    </div>
+                    <div class="tab-pane-visual">
+                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=800" alt="Luxury Hotel Front Desk and Operations">
+                    </div>
+                </div>
+
+                <!-- محتوى التجهيز والتموين - تم إزالة لوجو SOHO والسطر الخاص به تلبية لطلبكم لراحة العين -->
+                <div class="tab-content" id="tab-trading">
+                    <div class="tab-pane-text">
+                        <h4>تجهيز ومستلزمات الضيافة والتأثيث المستدام</h4>
+                        <p>نوفر حلاً متكاملاً للاستيراد والتأثيث والتأمين اللوجستي لأكبر الفنادق in مكة والمدينة والمملكة بالاعتماد على شراكات مع أرقى العلامات المستدامة.</p>
+                        <ul class="tab-features-list">
+                            <li>تأمين وتوريد الأثاث والمعدات والتجهيزات بالكامل (FF&E و SOE).</li>
+                            <li>الشراكة الحصرية مع علامة SOHO الأوروبية لتأمين أرقى مستلزمات العناية الصديقة للبيئة.</li>
+                            <li>تسجيل وتأمين مستندات الفحص والامتثال مع هيئة الغذاء والدواء ونظام سابر (SABER).</li>
+                        </ul>
+                        <!-- زر حث على الإجراء السياقي المطور حديثاً لرفع التحويل (CRO Optimized CTA) -->
+                        <a href="#contact" class="btn btn-contextual">طلب عرض أسعار مستلزمات فندقية</a>
+                    </div>
+                    <div class="tab-pane-visual">
+                        <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=800" alt="Premium Hotel Amenities & Sustainable Supplies">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- الميزة التنافسية (Why SHS?) -->
+    <section class="section-padding why-shs" id="why-shs">
+        <div class="container">
+            <div class="section-header text-center">
+                <h3>ميزتنا التنافسية</h3>
+                <p style="color: rgba(255, 255, 255, 0.75);">لماذا نعتبر الشريك الاستراتيجي والتشغيلي الموثوق لمستثمري الضيافة؟</p>
+            </div>
+            <div class="why-shs-grid">
+                <div class="why-card">
+                    <h4>التكامل التخصصي الفني</h4>
+                    <p>فريق مركزي موحد يجمع بين مجالات الإدارة، التصميم، والهندسة المعمارية، مما يضمن انسيابية العمل دون الحاجة لتعامل المالك مع أطراف متعددة.</p>
+                </div>
+                <div class="why-card">
+                    <h4>قوة وملاءة مجموعة سياد</h4>
+                    <p>بصفتنا شركة تابعة لمجموعة سياد القابضة، فإننا نستند إلى شبكة لوجستية وخبرة عميقة تمتد لعدة قطاعات في السياحة والنقل والإطعام بالمملكة.</p>
+                </div>
+                <div class="why-card">
+                    <h4>الموازنة المعيارية الدقيقة</h4>
+                    <p>نجمع في خططنا بين تلبية متطلبات واشتراطات الجهات التنظيمية المحلية بدقة، مع تطبيق معايير الضيافة العالمية الحديثة.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- خط ومراحل سير عمل المشروع الفني (Typical Project Map) -->
+    <section class="section-padding project-map-section" id="project-map">
+        <div class="container">
+            <div class="section-header text-center">
+                <h3>رحلة استثمارك الفندقي معنا</h3>
+                <p>خارطة طريق واضحة نتبعها لضمان انتقال مشروعك الفندقي من فكرة إلى واقع تشغيلي مثمر</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-step">
+                    <div class="timeline-node">1</div>
+                    <h4>الدراسة والتراخيص</h4>
+                    <p>إعداد التوقعات الأولية والتحقق من متطلبات وزارة السياحة، الدفاع المدني، والجهات المعنية.</p>
+                </div>
+                <div class="timeline-step">
+                    <div class="timeline-node">2</div>
+                    <h4>خطة الأعمال والمفهوم</h4>
+                    <p>بناء خطة عمل مبدئية، وتطوير المفهوم المعماري وبناء الهوية التجارية للموقع (Concept).</p>
+                </div>
+                <div class="timeline-step">
+                    <div class="timeline-node">3</div>
+                    <h4>التنفيذ والهندسة</h4>
+                    <p>إعداد المخططات الفنية، التصميمات الداخلية، توريد مستلزمات التأثيث والفرش بالكامل (FF&E).</p>
+                </div>
+                <div class="timeline-step">
+                    <div class="timeline-node">4</div>
+                    <h4>التشغيل والافتتاح</h4>
+                    <p>إدارة ما قبل الافتتاح والتشغيل الفعلي، المبيعات والتسويق، وإجراء التدقيق الفندقي المستمر.</p>
+                </div>
+            </div>
+            <!-- زر ربط نهاية خط السير بنموذج الاتصال لرفع التحويل (CRO Timeline Footer Button) -->
+            <div style="margin-top: 45px; text-align: center;">
+                <a href="#contact" class="btn btn-secondary">ابدأ أولى مراحل مشروعك الفندقي معنا اليوم</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- نماذج من قصة الأثر (Case Studies) -->
+    <section class="section-padding cases" id="cases">
+        <div class="container">
+            <div class="section-header text-center">
+                <h3>نماذج من قصة الأثر</h3>
+                <p>مشاريع حقيقية أعدنا هندسة بنيتها الاستثمارية والتشغيلية بنجاح</p>
+            </div>
+            <div class="cases-grid">
+                <!-- الحالة الأولى -->
+                <div class="case-card">
+                    <!-- هيكلة الصورة الحقيقية الحادة لضمان أعلى جودة وحدة بصرياً -->
+                    <div class="case-img-wrapper">
+                        <img class="case-img-element" src="https://image-tc.galaxy.tf/wijpeg-7qffx3f0ae552rtuxvtk29aq/dsc04522.jpg" alt="فندق سجى المدينة المنورة">
+                        <span class="case-badge">المدينة المنورة</span>
+                    </div>
+                    <div class="case-content">
+                        <h4>سجى المدينة (من الاقتصادي لـ 4 نجوم)</h4>
+                        <div class="case-details">
+                            <p><strong>التحدي:</strong> مبنى مخصص للإسكان الاقتصادي يعاني من تراجع حاد في الأسعار والتقييمات (أقل من 5/10) مع غياب المرافق الحيوية.</p>
+                            <p><strong>الحل:</strong> خلال 6 أشهر فقط وبتكلفة استثمارية بلغت 50 مليون ريال، قمنا بإعادة تخطيط وتصميم الغرف والمساحات العامة بالكامل، وبناء هوية جديدة ومطابخ حديثة.</p>
+                            <p><strong>النتيجة:</strong> رفع تصنيف الفندق إلى 4 نجوم، وتحقيق المركز الأول على Booking.com بمعدلات إشغال قياسية.</p>
+                            
+                            <!-- إضافة زر تواصل مخصص في كارت سابقة الأعمال (CRO Card Action) -->
+                            <div style="margin-top: 15px; border-top: 1px solid rgba(52, 42, 44, 0.05); padding-top: 12px;">
+                                <a href="#contact" class="case-action-link" style="font-size: 13.5px; font-weight: 700; color: var(--secondary-color); display: flex; align-items: center; gap: 5px;">
+                                    استفسر عن حل لمشروع فندقي مماثل <span>←</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- الحالة الثانية -->
+                <div class="case-card">
+                    <!-- هيكلة الصورة الحقيقية الحادة لضمان أعلى جودة وحدة بصرياً -->
+                    <div class="case-img-wrapper">
+                        <img class="case-img-element" src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/882619339.jpg?k=865deb026bf9dc0c22e94d52656088e62b355db12312cdd8b2903592228e0ca1&o=" alt="فندق أنوار المدينة موفنبيك">
+                        <span class="case-badge">المنطقة المركزية</span>
+                    </div>
+                    <div class="case-content">
+                        <h4>أنوار المدينة موفنبيك (القدرة التشغيلية الضخمة)</h4>
+                        <div class="case-details">
+                            <p><strong>التحدي:</strong> إعادة تأهيل مبنى قائم وتحويله إلى فندق فخم فئة 5 نجوم بطاقة استيعابية هائلة تتجاوز 1,290 غرفة وجناح بجانب الحرم.</p>
+                            <p><strong>الحل:</strong> بناء مطبخ مركزي يخدم 4,000 شخص وافتتاح 7 منافذ ممتازة للأغذية والمشروبات، وتطوير البنية التحتية والشبكات بالكامل للفندق.</p>
+                            <p><strong>النتيجة:</strong> تشغيل ناجح ومستدام لأحد أكبر الفنادق اللوجستية في المنطقة المركزية بالمدينة المنورة بجوار الحرم النبوي.</p>
+                            
+                            <!-- إضافة زر تواصل مخصص في كارت سابقة الأعمال (CRO Card Action) -->
+                            <div style="margin-top: 15px; border-top: 1px solid rgba(52, 42, 44, 0.05); padding-top: 12px;">
+                                <a href="#contact" class="case-action-link" style="font-size: 13.5px; font-weight: 700; color: var(--secondary-color); display: flex; align-items: center; gap: 5px;">
+                                    استفسر عن حل لمشروع فندقي مماثل <span>←</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- الحالة الثالثة -->
+                <div class="case-card">
+                    <!-- هيكلة الصورة الحقيقية الحادة لضمان أعلى جودة وحدة بصرياً -->
+                    <div class="case-img-wrapper">
+                        <img class="case-img-element" src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAGLptSv4JWIx0vhlxJtWtqn-8UZkAIyNd6aE8k4MUZFjPCHgqzww23eu5qwL0aNTep4jtB_9oAb0XzcaxxAFuTNk0AVkgX9ileyMPU0xbweYth1DynPjXjaDNDd-Ubm5smEVB53g=s680-w680-h510-rw" alt="فندق الخيام جدة التاريخية">
+                        <span class="case-badge">جدة التاريخية</span>
+                    </div>
+                    <div class="case-content">
+                        <h4>فندق الخيام</h4> <!-- تم تبسيط وتطهير العنوان بناءً على طلبكم ليكون واثقاً ومباشراً -->
+                        <div class="case-details">
+                            <p><strong>التحدي:</strong> تحديث فندق الخيام التاريخي في منطقة "البلد" بجدة (المدرجة باليونسكو) ليصبح فندقاً تراثياً (Boutique) من فئة 3 نجوم.</p>
+                            <p><strong>الحل:</strong> إجراء تعديلات هيكلية وتصميمية للامتثال لمتطلبات الدفاع المدني وهيئة السياحة المحدثة مع حماية الطابع المعماري الحجازي العريق.</p>
+                            <p><strong>النتيجة:</strong> ترخيص الفندق وإعادة إحياء قيمته الاستثمارية مع الحفاظ على هويته التراثية الفاخرة.</p>
+                            
+                            <!-- إضافة زر تواصل مخصص في كارت سابقة الأعمال (CRO Card Action) -->
+                            <div style="margin-top: 15px; border-top: 1px solid rgba(52, 42, 44, 0.05); padding-top: 12px;">
+                                <a href="#contact" class="case-action-link" style="font-size: 13.5px; font-weight: 700; color: var(--secondary-color); display: flex; align-items: center; gap: 5px;">
+                                    استفسر عن حل لمشروع فندقي مماثل <span>←</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- الأسئلة الشائعة الأنيقة (FAQ Accordion) -->
+    <section class="section-padding faq-section" id="faq">
+        <div class="container">
+            <div class="section-header text-center">
+                <h3>الأسئلة الشائعة</h3>
+                <p>إجابات مباشرة على الاستفسارات الأكثر طرحاً من قبل المستثمرين وملاك العقارات الفندقية</p>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-header" onclick="toggleFaq(this)">
+                        <span>هل يقتصر عملكم على تقديم الاستشارات أم يشمل التشغيل والتوريد الفعلي؟</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-body">
+                        <p>نحن نقدم نموذجاً متكاملاً (Turnkey Solution)؛ حيث نبدأ معكم من تقديم الدراسات الاستشارية والجدوى الاقتصادية، ثم ننتقل إلى مرحلة التصميم المعماري الداخلي وتجهيز مستلزمات الفنادق بالكامل من أرقى البراندات الصديقة للبيئة، وصولاً إلى إدارة وتشغيل الفندق بالكامل لضمان أفضل عائد على الاستثمار.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-header" onclick="toggleFaq(this)">
+                        <span>هل تساعدون الملاك في الامتثال مع اشتراطات الجهات الحكومية لترخيص المنشأة؟</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-body">
+                        <p>بكل تأكيد. كجزء من الركيزة الأولى (الاستشارات الهندسية)، نتولى مراجعة كافة المخططات وإدخال التعديلات اللازمة لضمان توافق المبنى تماماً مع شروط وزارة السياحة والدفاع المدني والأمانات البلدية للحصول على التراخيص المطلوبة دون عقبات أو تأخير.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-header" onclick="toggleFaq(this)">
+                        <span>ما هي العلامات التجارية الفندقية التي تملكها أو تشغلها الشركة؟</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-body">
+                        <p>نقوم بتشغيل الفنادق تحت مظلة هويتنا المحلية الفاخرة والمسجلة (فنادق سجى Saja Hotels) مثل فندق سجى مكة وسجى المدينة. كما نملك المرونة الكاملة لتمثيل الملاك أمام المشغلين العالميين الكبار مثل مجموعة Accor والبراندات الشريكة لضمان جودة الأداء المالي والتشغيلي.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- نموذج تواصل مخصص لرفع التحويل (Contact Section) -->
+    <section class="section-padding contact-section" id="contact">
+        <div class="container">
+            <div class="section-header text-center">
+                <h3>ابدأ خطوتك الأولى نحو الاستثمار الفندقي الأمثل اليوم</h3>
+                <p>دعنا نساعدك في تقييم وضع عقارك الحالي، أو دراسة مشروعك القادم وتحديد الفرص الكامنة فيه.</p>
+            </div>
+            <div class="contact-wrapper">
+                <form id="lead-generation-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="client-name">الاسم الكريم</label>
+                            <input type="text" id="client-name" class="form-control" placeholder="الاسم الثنائي أو الثلاثي" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="client-phone">رقم الجوال (يفضل واتساب)</label>
+                            <input type="tel" id="client-phone" class="form-control" placeholder="+966 5x xxx xxxx" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="client-email">البريد الإلكتروني</label>
+                            <input type="email" id="client-email" class="form-control" placeholder="yourname@domain.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="project-type">نوع المشروع المستهدف</label>
+                            <select id="project-type" class="form-control" required>
+                                <option value="" disabled selected>اختر النوع المقارب لمشروعك</option>
+                                <option value="conversion">أريد تحويل أو تجديد مبنى/فندق قائم</option>
+                                <option value="new">لدي مشروع فندقي جديد قيد التأسيس</option>
+                                <option value="supplies">أريد الاستفسار عن التجهيزات والمستلزمات (SHS Trading)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div style="text-align: center; margin-top: 30px;">
+                        <button type="submit" class="btn btn-primary" style="width: 100%; max-width: 380px; font-size: 16px;">طلب استشارة مجانية وعرض سابقة الأعمال</button>
+                    </div>
+                    <p class="privacy-note">نحترم خصوصية بياناتك بالكامل؛ لن يتم مشاركة معلوماتك أو استخدامها لإرسال رسائل غير مرغوب فيها.</p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- تذييل الصفحة -->
+    <footer>
+        <div class="container">
+            <div class="footer-wrapper">
+                <div class="footer-copyright">
+                    <p>جميع الحقوق محفوظة © 2025 - سجى لحلول الضيافة (SHS)</p>
+                </div>
+                <div class="footer-info">
+                    <p>إحدى شركات مجموعة سياد القابضة | جدة - مكة المكرمة - المدينة المنورة</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ملف برمجة التفاعلات (JavaScript) -->
+    <script>
+        // تفعيل شريط التنقل اللزج عند التمرير (Sticky Navigation)
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('main-header');
+            if (window.scrollY > 80) {
+                header.classList.add('sticky');
+            } else {
+                header.classList.remove('sticky');
+            }
+        });
+
+        // تشغيل الهامبرجر منيو التفاعلي للهواتف (Mobile Responsive Menu)
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const navLinks = document.getElementById('nav-links');
+
+        mobileMenuBtn.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.classList.toggle('active'); // تفعيل حركة الهامبرجر التفاعلية الرائعة
+        });
+
+        // إغلاق القائمة تلقائياً عند الضغط على الروابط
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.classList.remove('active');
+            });
+        });
+
+        // التحكم التفاعلي بالتبويبات لقسم الخدمات (Interactive Tabs)
+        function switchTab(event, tabId) {
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
+            
+            event.currentTarget.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        // التحكم التفاعلي بقسم الأسئلة الشائعة (Accordion FAQ Toggle)
+        function toggleFaq(headerElement) {
+            const faqItem = headerElement.parentElement;
+            const faqBody = faqItem.querySelector('.faq-body');
+            
+            document.querySelectorAll('.faq-item').forEach(item => {
+                if (item !== faqItem) {
+                    item.classList.remove('active');
+                    item.querySelector('.faq-body').style.maxHeight = null;
+                }
+            });
+
+            faqItem.classList.toggle('active');
+            if (faqItem.classList.contains('active')) {
+                faqBody.style.maxHeight = faqBody.scrollHeight + "px";
+            } else {
+                faqBody.style.maxHeight = null;
+            }
+        }
+
+        // معالجة نموذج التحويل لتقديم استجابة تفاعلية احترافية (CRO Success Feedback)
+        const leadForm = document.getElementById('lead-generation-form');
+        leadForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('client-name').value;
+            const phone = document.getElementById('client-phone').value;
+
+            const contactWrapper = document.querySelector('.contact-wrapper');
+            contactWrapper.style.transition = 'all 0.5s ease';
+            contactWrapper.innerHTML = `
+                <div style="text-align: center; padding: 50px 20px; color: var(--text-dark);">
+                    <div style="font-size: 60px; margin-bottom: 25px; color: var(--secondary-color);">✓</div>
+                    <h4 style="font-size: 24px; font-weight: 800; margin-bottom: 15px; color: var(--primary-color);">نشكرك على ثقتك واهتمامك، أستاذ ${name}</h4>
+                    <p style="font-size: 15.5px; color: var(--text-body); line-height: 1.8; max-width: 600px; margin: 0 auto;">
+                        تم استلام طلب الاستشارة الخاص بك بنجاح. سنقوم بمراجعة معطيات مشروعك الفندقي، وسيتواصل معك أحد مستشارينا هاتفياً أو عبر الواتساب على الرقم (${phone}) خلال 24 ساعة عمل لتنسيق موعد الجلسة الاستشارية المجانية وإرسال سابقة الأعمال الكاملة.
+                    </p>
+                </div>
+            `;
+        });
+    </script>
+</body>
+</html>
