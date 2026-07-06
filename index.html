@@ -1128,9 +1128,9 @@
                 display: flex;
             }
 
-            .nav-menu {
-                position: fixed;
-                top: -100%;
+.nav-menu {
+                position: absolute; /* تم التعديل من fixed إلى absolute */
+                top: -100vh;
                 left: 0;
                 width: 100%;
                 background-color: var(--primary-color);
@@ -1142,7 +1142,7 @@
             }
 
             .nav-menu.active {
-                top: 80px;
+                top: 100%; /* تلتصق ديناميكياً بأسفل الهيدر تماماً سواء كان لزجاً أو شفافاً */
             }
         }
     </style>
@@ -1571,13 +1571,15 @@
     <!-- ملف برمجة التفاعلات (JavaScript) -->
     <script>
         // تفعيل شريط التنقل اللزج عند التمرير (Sticky Navigation)
-        window.addEventListener('scroll', function() {
+window.addEventListener('scroll', function() {
             const header = document.getElementById('main-header');
             if (window.scrollY > 80) {
                 header.classList.add('sticky');
             } else {
                 header.classList.remove('sticky');
             }
+            // سطر إضافي لإغلاق قائمة الجوال تلقائياً عند التمرير لأسفل لراحة العين
+            document.getElementById('nav-links').classList.remove('active');
         });
 
         // تشغيل الهامبرجر منيو التفاعلي للهواتف (Mobile Responsive Menu)
